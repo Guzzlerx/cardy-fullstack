@@ -1,0 +1,8 @@
+.header__button {
+    height: 24px;
+    width: 24px;
+    background-color: black;
+    border: 0;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
