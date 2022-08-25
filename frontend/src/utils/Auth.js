@@ -1,5 +1,5 @@
 class Auth {
-    BASE_URL = "https://auth.nomoreparties.co";
+    BASE_URL = "https://api.guzzlerapp.nomoredomains.sbs";
 
     register = ({ email, password }) => {
         return fetch(`${this.BASE_URL}/signup`, {
@@ -26,7 +26,7 @@ class Auth {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },
         }).then(this._checkResponse);
     };

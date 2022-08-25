@@ -201,6 +201,7 @@ function App() {
         const jwt = localStorage.getItem("jwt");
 
         if (jwt) {
+			console.log(jwt)
             auth.getContent(jwt).then((data) => {
                 if (data) {
                     const {

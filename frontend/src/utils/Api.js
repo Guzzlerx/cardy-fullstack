@@ -2,7 +2,7 @@ class Api {
     constructor({ baseUrl, headers }) {
         this._profileUrl = baseUrl;
         this._headers = headers;
-        this._cardsUrl = "https://mesto.nomoreparties.co/v1/cohort36/cards";
+        this._cardsUrl = "https://api.guzzlerapp.nomoredomains.sbs/cards";
     }
 
     getUserInfo() {
@@ -33,7 +33,7 @@ class Api {
     }
 
     addNewCard(cardDataObj) {
-        return fetch("https://mesto.nomoreparties.co/v1/cohort36/cards", {
+        return fetch(this._cardsUrl, {
             headers: this._headers,
             method: "POST",
             body: JSON.stringify(cardDataObj),
@@ -41,7 +41,7 @@ class Api {
     }
 
     deleteCard(id) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort36/cards/${id}`, {
+        return fetch(`https://api.guzzlerapp.nomoredomains.sbs/cards${id}`, {
             headers: this._headers,
             method: "DELETE",
         }).then((res) => this._checkResponseStatus(res));
@@ -49,7 +49,7 @@ class Api {
 
     likeCard(id, method) {
         return fetch(
-            `https://mesto.nomoreparties.co/v1/cohort36/cards/${id}/likes`,
+            `https://api.guzzlerapp.nomoredomains.sbs/cards${id}/likes`,
             {
                 headers: this._headers,
                 method: method,
@@ -58,7 +58,8 @@ class Api {
     }
 
     setUserAvatar(urlObj) {
-        return fetch("https://nomoreparties.co/v1/cohort36/users/me/avatar", {
+		// https://api.guzzlerapp.nomoredomains.sbs/users/me/avatar
+        return fetch("http://localhost:3001/users/me/avatar", {
             headers: this._headers,
             method: "PATCH",
             body: JSON.stringify(urlObj),
@@ -67,9 +68,9 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: "https://nomoreparties.co/v1/cohort36/users/me",
+    baseUrl: "https://api.guzzlerapp.nomoredomains.sbs/users/me",
     headers: {
-        authorization: "24bb909b-945c-4159-8387-3cc3e3137134",
+        authorization: `${localStorage.getItem('jwt')}`,
         "Content-Type": "application/json",
     },
 });
