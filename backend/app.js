@@ -13,7 +13,7 @@ const handleError = require('./middlewares/error');
 const { NotFoundError } = require('./errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env; // eslint-disable-line
+const { PORT = 3001 } = process.env; // eslint-disable-line
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,

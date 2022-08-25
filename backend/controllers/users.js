@@ -170,12 +170,8 @@ function login(req, res, next) {
             expiresIn: '7d',
           });
           res
-            .cookie('token', token, {
-              maxAge: 3600000,
-              httpOnly: true,
-            })
             .status(200)
-            .send({ message: 'Токен успешно отправлен' });
+            .send({ token });
         })
         .catch(() => next(new ServerError()));
     });
