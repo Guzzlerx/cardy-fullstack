@@ -58,8 +58,7 @@ class Api {
     }
 
     setUserAvatar(urlObj) {
-		// https://api.guzzlerapp.nomoredomains.sbs/users/me/avatar
-        return fetch("http://localhost:3001/users/me/avatar", {
+        return fetch("https://api.guzzlerapp.nomoredomains.sbs/users/me/avatar", {
             headers: this._headers,
             method: "PATCH",
             body: JSON.stringify(urlObj),
