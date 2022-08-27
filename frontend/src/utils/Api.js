@@ -18,7 +18,13 @@ class Api {
     }
 
     getInitialCards() {
-        return fetch(this._cardsUrl, this._headers).then((res) => this._checkResponseStatus(res));
+        return fetch('https://asdasd', {
+			headers: {
+				credentials: "include",
+        		"Content-Type": "application/json",
+			},
+			method: "GET"
+		}).then((res) => this._checkResponseStatus(res));
     }
 
     setUserInfo(userInfoObj) {
@@ -66,7 +72,7 @@ const api = new Api({
     baseUrl: "https://api.guzzlerapp.nomoredomains.sbs/users/me",
     headers: {
         // authorization: localStorage.getItem('jwt'),
-		"credentials": "include",
+		credentials: "include",
         "Content-Type": "application/json",
     },
 });
