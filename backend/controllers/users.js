@@ -174,11 +174,11 @@ function login(req, res, next) {
             .cookie('token', token, {
               maxAge: 3600000,
               httpOnly: true,
-              // sameSite: 'none',
-              // secure: true,
+              sameSite: 'none',
+              secure: true,
             })
             .status(200)
-            .send({ token });
+            .send({ message: 'Вы успешно авторизировались!' });
         })
         .catch(() => next(new ServerError()));
     });
