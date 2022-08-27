@@ -29,15 +29,8 @@ const limiter = rateLimit({
 });
 
 app.use(helmet());
-// app.use(cors());
 app.use(cors({
   credentials: true,
-  origin: [
-    'http://localhost:3001',
-    'http://localhost:3000',
-    'https://localhost:3001',
-    'https://localhost:3000',
-  ],
 }));
 app.use(limiter);
 
