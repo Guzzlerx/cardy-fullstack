@@ -4,9 +4,9 @@ class Auth {
     register = ({ email, password }) => {
         return fetch(`${this.BASE_URL}/signup`, {
             method: "POST",
+			credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
-				credentials: 'include'
             },
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
@@ -15,9 +15,9 @@ class Auth {
     authorize = ({ email, password }) => {
         return fetch(`${this.BASE_URL}/signin`, {
             method: "POST",
+			credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
-				credentials: 'include'
             },
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
@@ -25,10 +25,10 @@ class Auth {
 
     getContent = (token) => {
         return fetch(`${this.BASE_URL}/users/me`, {
-            method: "GET",
+			method: "GET",
+			credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
-				credentials: 'include'
                 // authorization: `Bearer ${token}`,
                 // authorization: token,
             },

@@ -20,9 +20,9 @@ class Api {
     getInitialCards() {
         return fetch(this._cardsUrl, {
 			headers: {
-				credentials: "include",
         		"Content-Type": "application/json",
 			},
+			credentials: "include",
 			method: "GET"
 		}).then((res) => this._checkResponseStatus(res));
     }
@@ -72,9 +72,9 @@ const api = new Api({
     baseUrl: "https://api.guzzlerapp.nomoredomains.sbs/users/me",
     headers: {
         // authorization: localStorage.getItem('jwt'),
-		credentials: "include",
         "Content-Type": "application/json",
     },
+	credentials: "include",
 });
 
 export default api;
