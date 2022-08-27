@@ -4,9 +4,9 @@ const { AuthorizationError } = require('../errors');
 const { TOKEN_KEY = 'hidden-key' } = process.env;
 
 function verifyToken(req, res, next) {
-  // const { token } = req.cookies;
-  // console.log(req.cookies.token);
-  const token = req.headers.authorization;
+  const { token } = req.cookies;
+  console.log(req.cookies.token);
+  // const token = req.headers.authorization;
 
   if (!token) {
     next(new AuthorizationError());

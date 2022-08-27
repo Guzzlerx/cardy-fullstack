@@ -6,9 +6,8 @@ class Api {
     }
 
     getUserInfo() {
-        return fetch(this._profileUrl, {
-            headers: this._headers,
-        }).then((res) => this._checkResponseStatus(res));
+        return fetch(this._profileUrl, this._headers)
+			.then((res) => this._checkResponseStatus(res));
     }
 
     _checkResponseStatus(res) {
@@ -19,9 +18,7 @@ class Api {
     }
 
     getInitialCards() {
-        return fetch(this._cardsUrl, {
-            headers: this._headers,
-        }).then((res) => this._checkResponseStatus(res));
+        return fetch(this._cardsUrl, this._headers).then((res) => this._checkResponseStatus(res));
     }
 
     setUserInfo(userInfoObj) {
@@ -41,7 +38,7 @@ class Api {
     }
 
     deleteCard(id) {
-        return fetch(`https://api.guzzlerapp.nomoredomains.sbs/cards${id}`, {
+        return fetch(`https://api.guzzlerapp.nomoredomains.sbs/cards/${id}`, {
             headers: this._headers,
             method: "DELETE",
         }).then((res) => this._checkResponseStatus(res));
@@ -49,8 +46,7 @@ class Api {
 
     likeCard(id, method) {
         return fetch(
-            `https://api.guzzlerapp.nomoredomains.sbs/cards${id}/likes`,
-            {
+            `https://api.guzzlerapp.nomoredomains.sbs/cards/${id}/likes`, {
                 headers: this._headers,
                 method: method,
             }
@@ -69,10 +65,10 @@ class Api {
 const api = new Api({
     baseUrl: "https://api.guzzlerapp.nomoredomains.sbs/users/me",
     headers: {
-        authorization: localStorage.getItem('jwt'),
+        // authorization: localStorage.getItem('jwt'),
+		"credentials": "include",
         "Content-Type": "application/json",
     },
-	credentials: 'include'
 });
 
 export default api;

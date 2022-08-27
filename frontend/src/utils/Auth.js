@@ -6,6 +6,7 @@ class Auth {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+				credentials: 'include'
             },
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
@@ -16,6 +17,7 @@ class Auth {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+				credentials: 'include'
             },
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
@@ -26,8 +28,9 @@ class Auth {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+				credentials: 'include'
                 // authorization: `Bearer ${token}`,
-                authorization: token,
+                // authorization: token,
             },
         }).then(this._checkResponse);
     };
