@@ -32,8 +32,8 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(cors({
   origin: [
-    'https://guzzlerapp.nomoredomains.sbs',
-    'http://guzzlerapp.nomoredomains.sbs',
+    'https://guzzlerapp.nomoredomains.sbs/',
+    'http://guzzlerapp.nomoredomains.sbs/',
   ],
   credentials: true,
 }));
