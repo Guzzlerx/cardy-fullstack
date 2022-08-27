@@ -69,9 +69,10 @@ class Api {
 const api = new Api({
     baseUrl: "https://api.guzzlerapp.nomoredomains.sbs/users/me",
     headers: {
-        authorization: `${localStorage.getItem('jwt')}`,
+        authorization: localStorage.getItem('jwt'),
         "Content-Type": "application/json",
     },
+	credentials: 'include'
 });
 
 export default api;

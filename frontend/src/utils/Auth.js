@@ -26,7 +26,8 @@ class Auth {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                // authorization: `Bearer ${token}`,
+                authorization: token,
             },
         }).then(this._checkResponse);
     };

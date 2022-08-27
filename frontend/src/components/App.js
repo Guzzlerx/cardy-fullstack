@@ -198,10 +198,10 @@ function App() {
     }
 
     function tokenCheck() {
+		console.log('tokenCheck')
         const jwt = localStorage.getItem("jwt");
-
+		console.log(jwt)
         if (jwt) {
-			console.log(jwt)
             auth.getContent(jwt).then((data) => {
                 if (data) {
                     const {
@@ -258,16 +258,18 @@ function App() {
     ]);
 
     useEffect(() => {
-        api.getUserInfo()
-            .then((userData) =>
-                setCurrentUser((state) => ({ ...state, ...userData }))
-            )
-            .catch((err) => console.error(`Ошибка - ${err}!`));
+		if (loggedIn) {
+			api.getUserInfo()
+				.then((userData) =>
+					setCurrentUser((state) => ({ ...state, ...userData }))
+				)
+				.catch((err) => console.error(`Ошибка - ${err}!`));
 
-        api.getInitialCards()
-            .then((data) => setCards(data))
-            .catch((err) => console.error(`Ошибка - ${err}!`));
-    }, []);
+			api.getInitialCards()
+				.then((data) => setCards(data))
+				.catch((err) => console.error(`Ошибка - ${err}!`));
+		}
+    }, [loggedIn]);
 
     useEffect(() => {
         tokenCheck();

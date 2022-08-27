@@ -68,6 +68,7 @@ function getCurrentUser(req, res, next) {
 function createUser(req, res, next) {
   const { name, about, avatar, email, password } = req.body;
 
+  console.log('created');
   if (password.length < 5) {
     next(new ValidationError());
     return;
@@ -170,6 +171,10 @@ function login(req, res, next) {
             expiresIn: '7d',
           });
           res
+            .cookie('token', token, {
+              maxAge: 3600000,
+              httpOnly: true,
+            })
             .status(200)
             .send({ token });
         })

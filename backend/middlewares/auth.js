@@ -7,7 +7,6 @@ function verifyToken(req, res, next) {
   // const { token } = req.cookies;
   // console.log(req.cookies.token);
   const token = req.headers.authorization;
-  console.log(req.headers.authorization);
 
   if (!token) {
     next(new AuthorizationError());
