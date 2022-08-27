@@ -177,7 +177,6 @@ function login(req, res, next) {
               sameSite: 'none',
               secure: true,
             })
-            .status(200)
             .send({ message: 'Вы успешно авторизировались!' });
         })
         .catch(() => next(new ServerError()));
