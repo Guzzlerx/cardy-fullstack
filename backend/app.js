@@ -28,6 +28,7 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
+app.use(cookieParser());
 app.use(helmet());
 app.use(cors({
   origin: [
@@ -40,8 +41,6 @@ app.use(limiter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-app.use(cookieParser());
 
 app.use(requestLogger);
 
