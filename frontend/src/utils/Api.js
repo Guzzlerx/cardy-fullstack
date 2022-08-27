@@ -18,7 +18,7 @@ class Api {
     }
 
     getInitialCards() {
-        return fetch('https://asdasd', {
+        return fetch(this._cardsUrl, {
 			headers: {
 				credentials: "include",
         		"Content-Type": "application/json",

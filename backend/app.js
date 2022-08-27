@@ -30,6 +30,10 @@ const limiter = rateLimit({
 
 app.use(helmet());
 app.use(cors({
+  origin: [
+    'https://guzzlerapp.nomoredomains.sbs',
+    'http://guzzlerapp.nomoredomains.sbs',
+  ],
   credentials: true,
 }));
 app.use(limiter);
