@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-const { TOKEN_KEY = 'hidden-key' } = process.env;
+const { NODE_ENV, TOKEN_KEY = 'hidden-key' } = process.env;
 
 const {
   NotFoundError,
@@ -68,7 +68,6 @@ function getCurrentUser(req, res, next) {
 function createUser(req, res, next) {
   const { name, about, avatar, email, password } = req.body;
 
-  console.log('created');
   if (password.length < 5) {
     next(new ValidationError());
     return;
@@ -167,7 +166,7 @@ function login(req, res, next) {
             return;
           }
 
-          const token = jwt.sign({ _id: user._id }, TOKEN_KEY, {
+          const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? TOKEN_KEY : 'hidden-key', {
             expiresIn: '7d',
           });
           res

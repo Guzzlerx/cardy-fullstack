@@ -36,7 +36,7 @@ router.post(
           .email({
             minDomainSegments: 2,
             tlds: { allow: ['com', 'net', 'ru'] },
-          }).message('fuck'),
+          }),
         password: Joi.string().required().min(5),
         name: Joi.string().min(2).max(30),
         about: Joi.string().min(2).max(30),
