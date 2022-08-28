@@ -3,5 +3,5 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-https://guzzlerapp.nomoredomains.sbs - сайт приложения.
+https://guzzlerapp.nomoredomains.sbs - сайт приложения.<br/>
 https://api.guzzlerapp.nomoredomains.sbs - сервер приложения.
