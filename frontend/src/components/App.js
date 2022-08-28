@@ -164,10 +164,8 @@ function App() {
 
         auth.authorize(userData)
             .then((data) => {
-                if (data.token) {
+                if (data) {
                     const { email } = userData;
-
-                    localStorage.setItem("jwt", data.token);
 
                     setLoggedIn(true);
                     setCurrentUser((state) => ({
@@ -187,10 +185,14 @@ function App() {
     }
 
     function handleExitClick() {
-        setLoggedIn(false);
-        setIsBurgerMenuOpen(false);
-
-        localStorage.removeItem("jwt");
+		auth.logout()
+			.then((data) => {
+				if (data) {
+					setLoggedIn(false);
+					setIsBurgerMenuOpen(false);
+				}
+			})
+			.catch(err => console.log(`Ошибка - ${err}`));
     }
 
     function handleBurgerMenuClick(bool) {
@@ -198,25 +200,18 @@ function App() {
     }
 
     function tokenCheck() {
-		console.log('tokenCheck')
-        const jwt = localStorage.getItem("jwt");
-		console.log(jwt)
-        if (jwt) {
-            auth.getContent(jwt).then((data) => {
-                if (data) {
-                    const {
-                        data: { email },
-                    } = data;
+		auth.getContent().then((data) => {
+			if (data) {
+				const { email } = data;
 
-                    setCurrentUser((state) => ({
-                        email,
-                        ...state,
-                    }));
+				setCurrentUser((state) => ({
+					email,
+					...state,
+				}));
 
-                    setLoggedIn(true);
-                }
-            });
-        }
+				setLoggedIn(true);
+			}
+		});
     }
 
     function closeAllPopups() {

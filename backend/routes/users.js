@@ -10,36 +10,9 @@ const {
   updateUserInfo,
   updateUserAvatar,
   login,
+  logout,
   getCurrentUser,
 } = require('../controllers/users');
-
-// const allowedCors = [
-//   'https://guzzlerapp.nomoredomains.sbs',
-//   'http://guzzlerapp.nomoredomains.sbs',
-//   'https://api.guzzlerapp.nomoredomains.sbs',
-// ];
-
-// router.use((req, res, next) => {
-//   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
-//   const { method } = req;
-//   // проверяем, что источник запроса есть среди разрешённых
-//   if (allowedCors.includes(origin)) {
-//     res.header('Access-Control-Allow-Origin', origin);
-//   }
-
-//   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-//   const requestHeaders = req.headers['access-control-request-headers'];
-//   // Если это предварительный запрос, добавляем нужные заголовки
-//   if (method === 'OPTIONS') {
-//     // разрешаем кросс-доменные запросы любых типов (по умолчанию)
-//     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-//     res.header('Access-Control-Allow-Headers', requestHeaders);
-//     // завершаем обработку запроса и возвращаем результат клиенту
-//     return res.end();
-//   }
-
-//   next();
-// });
 
 router.post(
   '/signin',
@@ -78,6 +51,7 @@ router.post(
 
 router.use(auth);
 
+router.get('/logout', logout);
 router.get('/users/me', getCurrentUser);
 router.get('/users', getUsers);
 router.get(

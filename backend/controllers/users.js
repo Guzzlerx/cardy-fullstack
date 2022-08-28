@@ -184,6 +184,12 @@ function login(req, res, next) {
     });
 }
 
+function logout(req, res, next) {
+  res.clearCookie('token').send('Сессия завершена.');
+
+  next();
+}
+
 module.exports = {
   getUsers,
   getUser,
@@ -191,5 +197,6 @@ module.exports = {
   updateUserInfo,
   updateUserAvatar,
   login,
+  logout,
   getCurrentUser,
 };

@@ -1,13 +1,16 @@
 class Auth {
     BASE_URL = "https://api.guzzlerapp.nomoredomains.sbs";
 
+	constructor({ headers, credentials }) {
+		this._headers = headers;
+		this._credentials = credentials;
+	}
+
     register = ({ email, password }) => {
         return fetch(`${this.BASE_URL}/signup`, {
             method: "POST",
-			credentials: 'include',
-            headers: {
-                "Content-Type": "application/json",
-            },
+			credentials: this._credentials,
+            headers: this._headers,
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
     };
@@ -15,23 +18,25 @@ class Auth {
     authorize = ({ email, password }) => {
         return fetch(`${this.BASE_URL}/signin`, {
             method: "POST",
-			credentials: 'include',
-            headers: {
-                "Content-Type": "application/json",
-            },
+			credentials: this._credentials,
+            headers: this._headers,
             body: JSON.stringify({ email, password }),
         }).then(this._checkResponse);
     };
 
-    getContent = (token) => {
+	logout = () => {
+		return fetch(`${this.BASE_URL}/logout`, {
+			method: "GET",
+			credentials: this._credentials,
+			headers: this._headers,
+		})
+	}
+
+    getContent = () => {
         return fetch(`${this.BASE_URL}/users/me`, {
 			method: "GET",
-			credentials: 'include',
-            headers: {
-                "Content-Type": "application/json",
-                // authorization: `Bearer ${token}`,
-                // authorization: token,
-            },
+			credentials: this._credentials,
+            headers: this._headers,
         }).then(this._checkResponse);
     };
 
@@ -48,6 +53,11 @@ class Auth {
     };
 }
 
-const auth = new Auth();
+const auth = new Auth({
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	credentials: 'include',
+});
 
 export default auth;
