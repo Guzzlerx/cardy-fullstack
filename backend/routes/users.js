@@ -14,12 +14,6 @@ const {
   getCurrentUser,
 } = require('../controllers/users');
 
-router.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 router.post(
   '/signin',
   celebrate({
